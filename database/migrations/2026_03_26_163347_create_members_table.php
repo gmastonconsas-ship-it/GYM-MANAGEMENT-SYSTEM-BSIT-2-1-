@@ -1,34 +1,13 @@
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
+public function up(): void
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        
-
-        Schema::create('members', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->date('membership_start_date');
-            $table->date('membership_end_date')->nullable();
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('members');
-    }
-};
+    Schema::create('members', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->string('phone');
+        $table->string('plan_type');
+        $table->string('payment_status');
+        $table->string('status')->default('Active'); // <--- DAGDAG MO ITO
+        $table->timestamps();
+    });
+}

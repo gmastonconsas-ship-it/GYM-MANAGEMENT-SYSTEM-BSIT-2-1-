@@ -17,8 +17,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
-    }
+   public function boot(): void
+{
+    // Idagdag ito para sa redirect
+    \Illuminate\Support\Facades\Event::listen(
+        \Illuminate\Auth\Events\Login::class,
+        function () {
+            return redirect('/members');
+        }
+    );
+}
 }
